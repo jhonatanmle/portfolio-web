@@ -1,14 +1,13 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import React from "react";
-import { cookies } from "next/headers";
 import { Ticket } from "@/interfaces/Ticket";
 import { IncomeForm } from "../components/IncomeForm";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { createServerSupabaseClient } from "@/supabase";
 
 const Page = async () => {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerSupabaseClient();
 
   const { data: tickets } = await supabase
     .from("Ticket")

@@ -13,11 +13,12 @@ import dayjs from "dayjs";
 import { DEFAULT_DATE_FORMAT } from "@/shared/constants";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { redirect } from "next/navigation";
+import { createServerSupabaseClient } from "@/supabase";
 
 dayjs.extend(customParseFormat);
 
 const Page = async () => {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerSupabaseClient();
   const {
     data: { session },
   } = await supabase.auth.getSession();

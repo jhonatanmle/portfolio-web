@@ -11,7 +11,6 @@ import { IncomeFormData } from "../../../features/income-dividend/types";
 import { NOW_DATE_FORMAT } from "@/shared/constants";
 import { incomeFormAdapter } from "@/features/income-dividend/adapters";
 import { useRouter } from "next/navigation";
-import useSupabase from "@/supabase/use-supabase";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 type Props = {
