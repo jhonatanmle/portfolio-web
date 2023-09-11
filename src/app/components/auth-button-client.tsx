@@ -7,6 +7,8 @@ import {
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/button";
 
+const redirect = process.env.NEXT_PUBLIC_AUTH_CALLBACK ?? "";
+
 export function AuthButton({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient();
   const router = useRouter();
@@ -15,7 +17,7 @@ export function AuthButton({ session }: { session: Session | null }) {
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: process.env.NEXT_PUBLIC_AUTH_CALLBACK ?? "",
+        redirectTo: redirect,
       },
     });
   };
@@ -46,7 +48,7 @@ export function AuthButton({ session }: { session: Session | null }) {
               clipRule="evenodd"
             />
           </svg>
-          Iniciar sesión con Github
+          Iniciar sesión con Github - {redirect}
         </button>
       ) : (
         <Button onClick={handleSignOut}>Cerrar sesión</Button>
