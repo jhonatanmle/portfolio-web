@@ -1,15 +1,6 @@
-import { Button } from "@nextui-org/button";
-import Link from "next/link";
+import { redirect } from 'next/navigation';
+import { APP_ROUTE_PATHS } from './app-routes';
 
 export default function Home() {
-  return (
-    <main>
-      <header>Portfolio web</header>
-      <section className="mt-4">
-        <Link href={"/income-dividend"}>
-          <Button variant="flat">Ver listado de dividendos</Button>
-        </Link>
-      </section>
-    </main>
-  );
+  redirect(APP_ROUTE_PATHS.dividendIncome);
 }

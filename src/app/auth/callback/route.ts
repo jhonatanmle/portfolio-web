@@ -8,7 +8,6 @@ export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
-  console.log('CALLBACK', requestUrl.origin);
   
   const code = requestUrl.searchParams.get("code");
 

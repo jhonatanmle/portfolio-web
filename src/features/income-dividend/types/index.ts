@@ -1,4 +1,4 @@
-export type IncomeFormData = {
+export type DividendIncomeFormData = {
   ticketId: number;
   amount: number;
   taxes: number;
@@ -6,7 +6,7 @@ export type IncomeFormData = {
   brokerPaymentDate: string;
 };
 
-export type IncomeDividendItem = {
+export type DividendIncomeItem = {
   id: string;
   ticketId: string;
   ticket: string;
