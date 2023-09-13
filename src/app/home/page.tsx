@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Bar } from "react-chartjs-2";
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,8 +10,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
-import { chartData } from "./data/chart-data";
+} from 'chart.js';
+import { chartData } from './data/chart-data';
 
 ChartJS.register(
   CategoryScale,
@@ -27,11 +27,11 @@ export default function Page() {
     responsive: true,
     plugins: {
       legend: {
-        position: "top" as const,
+        position: 'top' as const,
       },
       title: {
         display: true,
-        text: "Dividendos",
+        text: 'Dividendos',
       },
     },
     maintainAspectRatio: false,
@@ -45,33 +45,33 @@ export default function Page() {
   };
 
   const labels = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
   ];
 
   const data = {
     labels,
     datasets: [
       {
-        label: "2023",
+        label: '2023',
         // data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
         data: chartData.map((item) => item.amount),
         options: {
           parsing: {
-            key: "nested.value",
+            key: 'nested.value',
           },
         },
-        backgroundColor: "rgb(59, 130, 246, .5)",
+        backgroundColor: 'rgb(59, 130, 246, .5)',
       },
     ],
   };

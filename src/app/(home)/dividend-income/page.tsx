@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@nextui-org/button';
-import { IncomeDividendItemListResponse } from '@/features/income-dividend/services/interfaces/income-dividend-list';
-import { incomeDividendListAdapterResponse } from '@/features/income-dividend/adapters';
 import { Card, CardBody, CardFooter } from '@nextui-org/card';
 import { CircularProgress } from '@nextui-org/progress';
 import { Chip } from '@nextui-org/chip';
@@ -12,6 +10,8 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { createServerSupabaseClient } from '@/supabase';
 import { DividendIncomeList } from '../../components/dividend-income-list';
 import { APP_ROUTE_PATHS } from '@/app/app-routes';
+import { DividendIncomeItemListResponse } from '@/features/dividend-income/services/interfaces/dividend-income-list';
+import { dividendIncomeListAdapterResponse } from '@/features/dividend-income/adapters';
 
 dayjs.extend(customParseFormat);
 
@@ -22,9 +22,9 @@ const Page = async () => {
     .from('Dividend')
     .select('*, Ticket ( * )')
     .order('date', { ascending: false })
-    .returns<IncomeDividendItemListResponse[]>();
+    .returns<DividendIncomeItemListResponse[]>();
 
-  const items = incomeDividendListAdapterResponse(data!);
+  const items = dividendIncomeListAdapterResponse(data!);
 
   const total = items.reduce((acc, item) => acc + item.netAmount, 0);
   const monthlyTotal = items

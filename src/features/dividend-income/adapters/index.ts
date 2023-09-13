@@ -1,15 +1,15 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 import {
   DEFAULT_DATE_FORMAT,
   DEFAULT_DATE_INPUT_FORMAT,
-} from "@/shared/constants";
-import { IncomeDividendItem, IncomeFormData } from "../types";
-import { IncomeCreatePayload } from "../services/interfaces/income-create";
-import { IncomeDividendItemListResponse } from "../services/interfaces/income-dividend-list";
+} from '@/shared/constants';
+import { DividendIncomeCreatePayload } from '../services/interfaces/dividend-income-create';
+import { DividendIncomeItemListResponse } from '../services/interfaces/dividend-income-list';
+import { DividendIncomeFormData, DividendIncomeItem } from '../types';
 
-export const incomeFormAdapter = (
-  formData: IncomeFormData
-): IncomeCreatePayload => {
+export const dividendIncomeFormAdapter = (
+  formData: DividendIncomeFormData
+): DividendIncomeCreatePayload => {
   const { ticketId, amount, brokerPaymentDate, date, taxes } = formData;
 
   const calculateTaxes = Number(taxes) > 0 ? Number(taxes) / 100 : 0;
@@ -31,9 +31,9 @@ export const incomeFormAdapter = (
 
 const roundAmount = (value: number) => Math.round(value * 100) / 100;
 
-export const incomeDividendListAdapterResponse = (
-  data: IncomeDividendItemListResponse[]
-): IncomeDividendItem[] => {
+export const dividendIncomeListAdapterResponse = (
+  data: DividendIncomeItemListResponse[]
+): DividendIncomeItem[] => {
   if (!data) {
     return [];
   }
@@ -45,7 +45,7 @@ export const incomeDividendListAdapterResponse = (
     amount: roundAmount(item.amount),
     netAmount: roundAmount(item.netAmount),
     date: dayjs(item.date).format(DEFAULT_DATE_FORMAT),
-    month: dayjs(item.date).format("MMMM"),
+    month: dayjs(item.date).format('MMMM'),
     brokerPaymentDate: dayjs(item.brokerPaymentDate).format(
       DEFAULT_DATE_FORMAT
     ),

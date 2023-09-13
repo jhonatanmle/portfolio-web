@@ -7,12 +7,12 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@nextui-org/button';
 import { NOW_DATE_FORMAT } from '@/shared/constants';
-import { incomeFormAdapter } from '@/features/income-dividend/adapters';
 import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { DividendIncomeFormData } from '@/features/income-dividend/types';
 import Link from 'next/link';
 import { APP_ROUTE_PATHS } from '../app-routes';
+import { dividendIncomeFormAdapter } from '@/features/dividend-income/adapters';
+import { DividendIncomeFormData } from '@/features/dividend-income/types';
 
 type Props = {
   tickets?: Ticket[];
@@ -31,7 +31,7 @@ export const DividendIncomeForm = ({ tickets = [] }: Props) => {
   );
 
   const onSubmit = handleSubmit(async (formData) => {
-    const payload = incomeFormAdapter(formData);
+    const payload = dividendIncomeFormAdapter(formData);
 
     const { data: dividend } = await clientSupabase
       .from('Dividend')

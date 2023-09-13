@@ -1,4 +1,4 @@
-export interface IncomeCreatePayload {
+export interface DividendIncomeCreatePayload {
   ticketId: number;
   amount: number;
   taxes: number;

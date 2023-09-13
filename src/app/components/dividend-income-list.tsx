@@ -1,98 +1,79 @@
 'use client';
 
-import React, { Key, useCallback } from 'react';
-import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-} from '@nextui-org/table';
-import { DividendIncomeItem } from '@/features/income-dividend/types';
-import { Chip } from '@nextui-org/chip';
+import { Key, useState, useMemo, useEffect } from 'react';
+
+import { Tabs, Tab } from '@nextui-org/tabs';
+import dayjs from 'dayjs';
+import { DEFAULT_DATE_FORMAT, MONTH_LIST } from '@/shared/constants';
+import DividendIncomeListTable from './dividend-income-list-table';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { DividendIncomeItem } from '@/features/dividend-income/types';
+
+dayjs.extend(customParseFormat);
+
+const keyCurrentMonth = (dayjs().month() + 1).toString();
+const currentYear = dayjs().year();
+
+const columns = [
+  {
+    key: 'ticket',
+    label: 'Ticket',
+  },
+  {
+    key: 'amount',
+    label: 'Monto Bruto',
+  },
+  {
+    key: 'netAmount',
+    label: 'Monto Neto',
+  },
+  {
+    key: 'month',
+    label: 'Mes',
+  },
+  {
+    key: 'date',
+    label: 'Fecha Dividendo',
+  },
+  {
+    key: 'brokerPaymentDate',
+    label: 'Fecha Broker',
+  },
+];
 
 type Props = {
   items: DividendIncomeItem[];
 };
 
 export const DividendIncomeList = ({ items }: Props) => {
-  const columns = [
-    {
-      key: 'ticket',
-      label: 'Ticket',
-    },
-    {
-      key: 'amount',
-      label: 'Monto Bruto',
-    },
-    {
-      key: 'netAmount',
-      label: 'Monto Neto',
-    },
-    {
-      key: 'month',
-      label: 'Mes',
-    },
-    {
-      key: 'date',
-      label: 'Fecha Dividendo',
-    },
-    {
-      key: 'brokerPaymentDate',
-      label: 'Fecha Broker',
-    },
-  ];
+  const [currentMonth, setCurrentMonth] = useState<Key>(keyCurrentMonth);
 
-  const renderCell = useCallback((item: DividendIncomeItem, columnKey: Key) => {
-    const cellValue = item[columnKey as keyof DividendIncomeItem];
-
-    switch (columnKey) {
-      case 'amount':
-        return (
-          <Chip
-            className='capitalize w-[100px]'
-            color={'warning'}
-            size='sm'
-            variant='flat'
-          >
-            {cellValue ?? 0} USD
-          </Chip>
-        );
-      case 'netAmount':
-        return (
-          <Chip
-            className='capitalize w-[100px]'
-            color={'success'}
-            size='sm'
-            variant='flat'
-          >
-            {cellValue ?? 0} USD
-          </Chip>
-        );
-      default:
-        return cellValue;
-    }
-  }, []);
+  const tabs = useMemo(() => {
+    return MONTH_LIST.map((month, index) => ({
+      id: (index + 1).toString(),
+      label: month,
+      data: items.filter(
+        (item) =>
+          dayjs(item.date, DEFAULT_DATE_FORMAT).month() + 1 ===
+          Number(currentMonth)
+      ),
+    }));
+  }, [currentMonth, items]);
 
   return (
     <div>
-      <Table aria-label='Example table with dynamic content'>
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn key={column.key}>{column.label}</TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={items}>
-          {(item) => (
-            <TableRow key={item.id}>
-              {(columnKey) => (
-                <TableCell>{renderCell(item, columnKey)}</TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      <Tabs
+        aria-label='Dividend Monthly Tabs'
+        items={tabs}
+        selectedKey={currentMonth}
+        onSelectionChange={(key) => setCurrentMonth(key)}
+      >
+        {(item) => (
+          <Tab key={item.id} title={item.label}>
+            <DividendIncomeListTable columns={columns} items={item.data} />
+          </Tab>
+        )}
+      </Tabs>
     </div>
   );
 };
