@@ -34,11 +34,11 @@ export const DividendIncomeForm = ({ tickets = [] }: Props) => {
     const payload = dividendIncomeFormAdapter(formData);
 
     const { data: dividend } = await clientSupabase
-      .from('Dividend')
+      .from('dividend')
       .insert([payload])
       .select();
 
-    router.push('/income-dividend');
+    router.push(APP_ROUTE_PATHS.dividendIncome);
   });
 
   return (

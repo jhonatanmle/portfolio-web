@@ -19,8 +19,8 @@ const Page = async () => {
   const supabase = createServerSupabaseClient();
 
   const { data } = await supabase
-    .from('Dividend')
-    .select('*, Ticket ( * )')
+    .from('dividend')
+    .select('*, ticket ( * )')
     .order('date', { ascending: false })
     .returns<DividendIncomeItemListResponse[]>();
 
