@@ -41,7 +41,7 @@ export const dividendIncomeListAdapterResponse = (
   return data.map((item) => ({
     id: item.id,
     ticketId: item.ticketId,
-    ticket: item.Ticket.name,
+    ticket: item.ticket.name,
     amount: roundAmount(item.amount),
     netAmount: roundAmount(item.netAmount),
     date: dayjs(item.date).format(DEFAULT_DATE_FORMAT),

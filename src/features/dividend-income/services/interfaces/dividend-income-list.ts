@@ -9,5 +9,5 @@ export interface DividendIncomeItemListResponse {
   brokerPaymentDate: Date;
   taxesAmount: number;
   netAmount: number;
-  Ticket: Ticket;
+  ticket: Ticket;
 }
