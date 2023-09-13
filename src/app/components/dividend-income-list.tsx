@@ -61,19 +61,18 @@ export const DividendIncomeList = ({ items }: Props) => {
   }, [currentMonth, items]);
 
   return (
-    <div>
-      <Tabs
-        aria-label='Dividend Monthly Tabs'
-        items={tabs}
-        selectedKey={currentMonth}
-        onSelectionChange={(key) => setCurrentMonth(key)}
-      >
-        {(item) => (
-          <Tab key={item.id} title={item.label}>
-            <DividendIncomeListTable columns={columns} items={item.data} />
-          </Tab>
-        )}
-      </Tabs>
-    </div>
+    <Tabs
+      aria-label='Dividend Monthly Tabs'
+      items={tabs}
+      selectedKey={currentMonth}
+      onSelectionChange={(key) => setCurrentMonth(key)}
+      className='overflow-x-auto flex'
+    >
+      {(item) => (
+        <Tab key={item.id} title={item.label}>
+          <DividendIncomeListTable columns={columns} items={item.data} />
+        </Tab>
+      )}
+    </Tabs>
   );
 };
