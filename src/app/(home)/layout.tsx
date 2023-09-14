@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 import { APP_ROUTE_PATHS } from '../app-routes';
 import Navbar from '@/app/components/navbar';
+import { GraphqlService } from '@/features/core/http-client';
 
 async function HomeLayout({ children }: PropsWithChildren) {
   const supabase = createServerSupabaseClient();
@@ -12,6 +13,16 @@ async function HomeLayout({ children }: PropsWithChildren) {
 
   if (session === null) {
     redirect(APP_ROUTE_PATHS.signIn);
+  }
+
+  try {
+    const { data: tokenData } = await supabase
+      .from('externalToken')
+      .select('token');
+
+    GraphqlService.setToken(tokenData?.at(-1)?.token);
+  } catch (error) {
+    console.log(error);
   }
 
   return (

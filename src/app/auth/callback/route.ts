@@ -1,3 +1,5 @@
+import { signInPortfolio } from '@/features/auth-lib/services';
+import { GraphqlService } from '@/features/core/http-client';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
@@ -14,6 +16,18 @@ export async function GET(request: NextRequest) {
   if (code !== null) {
     const supabase = createRouteHandlerClient({ cookies });
     await supabase.auth.exchangeCodeForSession(code);
+
+    const userData = await signInPortfolio(
+      process.env.NEXT_PUBLIC_USER_ID!,
+      process.env.NEXT_PUBLIC_USER_RECOVERY_CODE!
+    );
+
+    await supabase
+      .from('externalToken')
+      .insert([
+        { token: userData.accessToken, refreshToken: userData.refreshToken },
+      ])
+      .select();
   }
 
   return NextResponse.redirect(requestUrl.origin);
