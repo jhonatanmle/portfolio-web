@@ -20,7 +20,7 @@ type Props = {
   events: CalendarEvent[];
 };
 
-export default function Calendar({ events }: Props) {
+export default function Calendar({ events = [] }: Props) {
   const items = useMemo<ItemEventCalendar[]>(() => {
     return events.map((item) => {
       return {

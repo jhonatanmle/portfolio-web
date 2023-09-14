@@ -17,7 +17,7 @@ export const dividendCalendarEventsAdapter = (
     (item) =>
       item.companyName?.length > 0 &&
       (item.exDividend || item.payDividend) &&
-      dayjs(item.date).utc().isAfter(dayjs().utc())
+      dayjs(item.date).utc().isBefore(dayjs().utc())
   );
 
   const validUpcomingEvents = data.events.upcomingEvents.filter(

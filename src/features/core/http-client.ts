@@ -1,5 +1,6 @@
 import { GraphQLClient, Variables } from 'graphql-request';
 import { validateError } from './errors/validate-error';
+import { signInPortfolio } from '../auth-lib/services';
 
 const API_URL = `${process.env.NEXT_PUBLIC_API_WALLET_URL}/graphql`;
 
@@ -16,8 +17,17 @@ export class GraphqlService {
     try {
       return await this.client.request<T>(query, variables);
     } catch (error) {
-      validateError(error as Error);
+      // validateError(error as Error);
     }
+  }
+
+  static async regenerateToken() {
+    const userData = await signInPortfolio(
+      process.env.NEXT_PUBLIC_USER_ID!,
+      process.env.NEXT_PUBLIC_USER_RECOVERY_CODE!
+    );
+
+    GraphqlService.setToken(userData.accessToken);
   }
 }
 
