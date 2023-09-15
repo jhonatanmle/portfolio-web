@@ -28,7 +28,7 @@ async function HomeLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Navbar />
-      <main className='mt-4'>{children}</main>
+      <main className='mt-4 px-6 md:px-4'>{children}</main>
     </>
   );
 }

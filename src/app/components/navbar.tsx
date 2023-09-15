@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Navbar as NavbarUI,
   NavbarContent,
@@ -19,12 +19,14 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 const WEB_NAME = 'Portfolio';
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const supabase = createClientComponentClient();
   const pathname = usePathname();
   const router = useRouter();
 
   const onClickMenu = (pathname: string) => {
     router.push(pathname);
+    setIsMenuOpen(false);
   };
 
   const handleSignOut = async () => {
@@ -33,11 +35,16 @@ function Navbar() {
   };
 
   return (
-    <NavbarUI disableAnimation isBordered maxWidth='full'>
+    <NavbarUI
+      isBordered
+      maxWidth='full'
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent className='sm:hidden' justify='start'>
         <NavbarMenuToggle />
       </NavbarContent>
-      <NavbarContent className='sm:hidden pr-3' justify='center'>
+      <NavbarContent className='sm:hidden' justify='center'>
         <NavbarBrand>
           <p className='font-bold text-inherit'>{WEB_NAME}</p>
         </NavbarBrand>
@@ -63,7 +70,7 @@ function Navbar() {
           </Link>
         </NavbarItem>
         <NavbarItem isActive={pathname === APP_ROUTE_PATHS.dividendCalendar}>
-          <Link color='foreground' onClick={handleSignOut}>
+          <Link color='danger' onClick={handleSignOut}>
             Cerrar Sesión
           </Link>
         </NavbarItem>
@@ -87,7 +94,7 @@ function Navbar() {
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <Link color='foreground' onClick={handleSignOut}>
+          <Link color='danger' onClick={handleSignOut}>
             Cerrar Sesión
           </Link>
         </NavbarMenuItem>
