@@ -2,7 +2,7 @@
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import esLocale from '@fullcalendar/core/locales/es';
 import {
   CalendarEvent,
@@ -21,6 +21,8 @@ type Props = {
 };
 
 export default function Calendar({ events = [] }: Props) {
+  const [calendarType, setCalendarType] = useState<string>('');
+
   const items = useMemo<ItemEventCalendar[]>(() => {
     return events.map((item) => {
       return {
@@ -34,22 +36,37 @@ export default function Calendar({ events = [] }: Props) {
 
   function renderEventContent(eventInfo: any) {
     return (
-      <>
+      <div>
         <Chip color={eventInfo.event.backgroundColor} size='sm' variant='dot'>
           {eventInfo.event.title}
         </Chip>
-      </>
+      </div>
     );
   }
 
+  useEffect(() => {
+    console.log(window.innerWidth);
+
+    if (window.innerWidth < 560) {
+      setCalendarType('dayGridDay');
+    } else {
+      setCalendarType('dayGridMonth');
+    }
+  }, []);
+
   return (
-    <FullCalendar
-      plugins={[dayGridPlugin]}
-      weekends={true}
-      events={items}
-      eventContent={renderEventContent}
-      locale={esLocale}
-      timeZone='America/Lima'
-    />
+    <>
+      {calendarType ? (
+        <FullCalendar
+          plugins={[dayGridPlugin]}
+          weekends={true}
+          events={items}
+          eventContent={renderEventContent}
+          locale={esLocale}
+          timeZone='America/Lima'
+          initialView={calendarType}
+        />
+      ) : null}
+    </>
   );
 }

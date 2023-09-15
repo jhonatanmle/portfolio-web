@@ -7,6 +7,8 @@ import {
   NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
 } from '@nextui-org/navbar';
 import { Link } from '@nextui-org/link';
 
@@ -66,6 +68,30 @@ function Navbar() {
           </Link>
         </NavbarItem>
       </NavbarContent>
+      <NavbarMenu>
+        <NavbarMenuItem>
+          <Link
+            color='foreground'
+            className='w-full'
+            onClick={() => onClickMenu(APP_ROUTE_PATHS.dividendIncome)}
+          >
+            Registros de dividendos
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            color='foreground'
+            onClick={() => onClickMenu(APP_ROUTE_PATHS.dividendCalendar)}
+          >
+            Calendario de Dividendos
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link color='foreground' onClick={handleSignOut}>
+            Cerrar Sesión
+          </Link>
+        </NavbarMenuItem>
+      </NavbarMenu>
     </NavbarUI>
   );
 }

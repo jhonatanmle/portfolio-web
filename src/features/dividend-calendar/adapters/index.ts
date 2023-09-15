@@ -13,6 +13,10 @@ dayjs.extend(utc);
 export const dividendCalendarEventsAdapter = (
   data: FindManyCalendarEventsResponse
 ): CalendarEvent[] => {
+  if (!data?.events) {
+    return [];
+  }
+
   const validPastEvents = data.events.pastEvents.filter(
     (item) =>
       item.companyName?.length > 0 &&
