@@ -45,9 +45,7 @@ export default function Calendar({ events = [] }: Props) {
   }
 
   useEffect(() => {
-    console.log(window.innerWidth);
-
-    if (window.innerWidth < 560) {
+    if (window.innerWidth <= 560) {
       setCalendarType('dayGridDay');
     } else {
       setCalendarType('dayGridMonth');
