@@ -1,1 +1,3 @@
 .example.env
+next.config.js
+node_modules

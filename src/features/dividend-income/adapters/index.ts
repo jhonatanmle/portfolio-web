@@ -6,6 +6,7 @@ import {
 import { DividendIncomeCreatePayload } from '../services/interfaces/dividend-income-create';
 import { DividendIncomeItemListResponse } from '../services/interfaces/dividend-income-list';
 import { DividendIncomeFormData, DividendIncomeItem } from '../types';
+import { roundAmount } from '@/shared/functions';
 
 export const dividendIncomeFormAdapter = (
   formData: DividendIncomeFormData
@@ -28,8 +29,6 @@ export const dividendIncomeFormAdapter = (
     netAmount: amountNumber - amountNumber * calculateTaxes,
   };
 };
-
-const roundAmount = (value: number) => Math.round(value * 100) / 100;
 
 export const dividendIncomeListAdapterResponse = (
   data: DividendIncomeItemListResponse[]
