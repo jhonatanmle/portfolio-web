@@ -36,3 +36,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Redirect
 - http://localhost:3000/
 - https://portfolio-web-nine-ivory.vercel.app
+
+## Dashboard template
+- https://nextui-dashboard.vercel.app/

@@ -1,11 +1,12 @@
 import { redirect } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 
-import Navbar from '@/app/components/navbar';
 import { GraphqlService } from '@/features/core/http-client';
 import { createServerSupabaseClient } from '@/supabase';
 
 import { APP_ROUTE_PATHS } from '../app-routes';
+import HeaderHome from '../components/header-home';
+import Sidebar from '../components/sidebar';
 
 async function HomeLayout({ children }: PropsWithChildren) {
   const supabase = createServerSupabaseClient();
@@ -28,10 +29,13 @@ async function HomeLayout({ children }: PropsWithChildren) {
   }
 
   return (
-    <>
-      <Navbar />
-      <main className='mt-4 px-6 md:px-4'>{children}</main>
-    </>
+    <div className='flex flex-col lg:flex-row h-screen'>
+      <Sidebar />
+      <div className='flex-1 lg:container'>
+        <HeaderHome />
+        <main className='p-8 h-full overflow-y-auto'>{children}</main>
+      </div>
+    </div>
   );
 }
 

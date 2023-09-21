@@ -1,4 +1,5 @@
 import { Button } from '@nextui-org/button';
+import { Card, CardBody } from '@nextui-org/card';
 import Link from 'next/link';
 import React from 'react';
 
@@ -23,8 +24,16 @@ export default async function Page() {
 
   return (
     <div>
-      <section className='flex flex-wrap gap-4'>
-        <h2>Invertido: {total} USD</h2>
+      <section>
+        <Card className='w-[250px] bg-zinc-800'>
+          <CardBody>
+            <p className='text-tiny uppercase font-bold'>Invertido</p>
+            <small>Dinero invertido en compras</small>
+            <div className='flex items-center mt-2'>
+              <span className='text-lg'>${total?.toFixed(2)}</span>
+            </div>
+          </CardBody>
+        </Card>
       </section>
       <section className='mt-10 text-right'>
         <Link href={APP_ROUTE_PATHS.stockPurchaseHistoryCreate}>
