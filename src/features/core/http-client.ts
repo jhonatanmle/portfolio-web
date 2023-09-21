@@ -1,5 +1,5 @@
 import { GraphQLClient, Variables } from 'graphql-request';
-import { validateError } from './errors/validate-error';
+
 import { signInPortfolio } from '../auth-lib/services';
 
 const API_URL = `${process.env.NEXT_PUBLIC_API_WALLET_URL}/graphql`;

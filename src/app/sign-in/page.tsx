@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { AuthButtonServer } from '../components/auth-button-server';
 
 const Page = () => {

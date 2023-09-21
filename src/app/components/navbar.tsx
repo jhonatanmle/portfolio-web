@@ -1,21 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import { Link } from '@nextui-org/link';
 import {
   Navbar as NavbarUI,
-  NavbarContent,
-  NavbarMenuToggle,
   NavbarBrand,
+  NavbarContent,
   NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from '@nextui-org/navbar';
-import { Link } from '@nextui-org/link';
-
-import { usePathname, useRouter } from 'next/navigation';
-import { APP_ROUTE_PATHS } from '../app-routes';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { nanoid } from 'nanoid';
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+
+import { APP_ROUTE_PATHS } from '../app-routes';
 
 const WEB_NAME = 'Portfolio';
 

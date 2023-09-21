@@ -1,14 +1,15 @@
 'use client';
 
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import React, { useEffect, useMemo, useState } from 'react';
 import esLocale from '@fullcalendar/core/locales/es';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import FullCalendar from '@fullcalendar/react';
+import { Chip } from '@nextui-org/chip';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import {
   CalendarEvent,
   DividendType,
 } from '@/features/dividend-calendar/types';
-import { Chip } from '@nextui-org/chip';
 
 interface ItemEventCalendar {
   title: string;

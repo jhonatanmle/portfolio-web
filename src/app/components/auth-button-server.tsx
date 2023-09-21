@@ -1,6 +1,8 @@
 import React from 'react';
-import { AuthButton } from './auth-button-client';
+
 import { createServerSupabaseClient } from '@/supabase';
+
+import { AuthButton } from './auth-button-client';
 
 export const AuthButtonServer = async () => {
   const supabase = createServerSupabaseClient();

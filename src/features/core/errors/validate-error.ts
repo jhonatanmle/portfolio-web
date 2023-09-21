@@ -1,4 +1,5 @@
 import { ClientError } from 'graphql-request';
+
 import { AuthError } from './auth-error';
 
 export const validateError = (error: any) => {

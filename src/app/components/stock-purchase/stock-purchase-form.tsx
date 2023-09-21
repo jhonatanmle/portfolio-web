@@ -1,18 +1,20 @@
 'use client';
 
-import { Ticket } from '@/interfaces/Ticket';
+import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { Select, SelectItem } from '@nextui-org/select';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { Button } from '@nextui-org/button';
-import { NOW_DATE_FORMAT } from '@/shared/constants';
-import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Link from 'next/link';
-import { APP_ROUTE_PATHS } from '../../app-routes';
-import { StockPurchaseFormData } from '@/features/stock-purchase/types/stock-purchase';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
 import { stockPurchaseFormAdapter } from '@/features/stock-purchase/adapters';
+import { StockPurchaseFormData } from '@/features/stock-purchase/types/stock-purchase';
+import { Ticket } from '@/interfaces/Ticket';
+import { NOW_DATE_FORMAT } from '@/shared/constants';
+
+import { APP_ROUTE_PATHS } from '../../app-routes';
 
 type Props = {
   tickets?: Ticket[];

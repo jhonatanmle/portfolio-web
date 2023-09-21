@@ -1,11 +1,12 @@
 'use client';
 
+import { Button } from '@nextui-org/button';
 import {
-  type Session,
   createClientComponentClient,
+  type Session,
 } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
-import { Button } from '@nextui-org/button';
+
 import GithubIcon from './icons/github-icon';
 
 const redirect = process.env.NEXT_PUBLIC_AUTH_CALLBACK ?? '';

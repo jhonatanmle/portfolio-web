@@ -1,18 +1,19 @@
 'use client';
 
-import { Ticket } from '@/interfaces/Ticket';
+import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { Select, SelectItem } from '@nextui-org/select';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { Button } from '@nextui-org/button';
-import { NOW_DATE_FORMAT } from '@/shared/constants';
-import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Link from 'next/link';
-import { APP_ROUTE_PATHS } from '../app-routes';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+
 import { dividendIncomeFormAdapter } from '@/features/dividend-income/adapters';
 import { DividendIncomeFormData } from '@/features/dividend-income/types';
+import { Ticket } from '@/interfaces/Ticket';
+import { NOW_DATE_FORMAT } from '@/shared/constants';
+
+import { APP_ROUTE_PATHS } from '../app-routes';
 
 type Props = {
   tickets?: Ticket[];
@@ -32,11 +33,7 @@ export const DividendIncomeForm = ({ tickets = [] }: Props) => {
 
   const onSubmit = handleSubmit(async (formData) => {
     const payload = dividendIncomeFormAdapter(formData);
-
-    const { data: dividend } = await clientSupabase
-      .from('dividend')
-      .insert([payload])
-      .select();
+    await clientSupabase.from('dividend').insert([payload]).select();
 
     router.push(APP_ROUTE_PATHS.dividendIncome);
   });

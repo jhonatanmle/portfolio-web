@@ -1,6 +1,5 @@
 'use client';
 
-import { DividendIncomeItem } from '@/features/dividend-income/types';
 import { Chip } from '@nextui-org/chip';
 import {
   Table,
@@ -11,6 +10,8 @@ import {
   TableRow,
 } from '@nextui-org/table';
 import React, { Key, useCallback } from 'react';
+
+import { DividendIncomeItem } from '@/features/dividend-income/types';
 
 type Props = {
   columns: any[];

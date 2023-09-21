@@ -1,3 +1,4 @@
 .example.env
 next.config.js
 node_modules
+postcss.config.js

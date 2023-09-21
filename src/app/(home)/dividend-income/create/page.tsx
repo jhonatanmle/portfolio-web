@@ -1,7 +1,8 @@
 import React from 'react';
+
+import { DividendIncomeForm } from '@/app/components/dividend-income-form';
 import { Ticket } from '@/interfaces/Ticket';
 import { createServerSupabaseClient } from '@/supabase';
-import { DividendIncomeForm } from '@/app/components/dividend-income-form';
 
 const Page = async () => {
   const supabase = createServerSupabaseClient();

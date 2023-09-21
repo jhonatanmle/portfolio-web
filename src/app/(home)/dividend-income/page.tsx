@@ -1,17 +1,18 @@
-import React from 'react';
-import Link from 'next/link';
 import { Button } from '@nextui-org/button';
 import { Card, CardBody, CardFooter } from '@nextui-org/card';
-import { CircularProgress } from '@nextui-org/progress';
 import { Chip } from '@nextui-org/chip';
+import { CircularProgress } from '@nextui-org/progress';
 import dayjs from 'dayjs';
-import { DEFAULT_DATE_FORMAT } from '@/shared/constants';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { createServerSupabaseClient } from '@/supabase';
-import { DividendIncomeList } from '../../components/dividend-income-list';
+import Link from 'next/link';
+
 import { APP_ROUTE_PATHS } from '@/app/app-routes';
-import { DividendIncomeItemListResponse } from '@/features/dividend-income/services/interfaces/dividend-income-list';
 import { dividendIncomeListAdapterResponse } from '@/features/dividend-income/adapters';
+import { DividendIncomeItemListResponse } from '@/features/dividend-income/services/interfaces/dividend-income-list';
+import { DEFAULT_DATE_FORMAT } from '@/shared/constants';
+import { createServerSupabaseClient } from '@/supabase';
+
+import { DividendIncomeList } from '../../components/dividend-income-list';
 
 dayjs.extend(customParseFormat);
 

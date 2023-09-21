@@ -1,12 +1,14 @@
 import dayjs from 'dayjs';
+
 import {
   DEFAULT_DATE_FORMAT,
   DEFAULT_DATE_INPUT_FORMAT,
 } from '@/shared/constants';
+import { roundAmount } from '@/shared/functions';
+
 import { DividendIncomeCreatePayload } from '../services/interfaces/dividend-income-create';
 import { DividendIncomeItemListResponse } from '../services/interfaces/dividend-income-list';
 import { DividendIncomeFormData, DividendIncomeItem } from '../types';
-import { roundAmount } from '@/shared/functions';
 
 export const dividendIncomeFormAdapter = (
   formData: DividendIncomeFormData

@@ -1,5 +1,6 @@
-import { Query } from '@/features/core/http-client';
 import { gql } from 'graphql-request';
+
+import { Query } from '@/features/core/http-client';
 
 export const queryFindManyCalendarEvents: Query = {
   query: gql`

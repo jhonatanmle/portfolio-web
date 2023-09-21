@@ -1,17 +1,18 @@
 'use client';
 
-import { StockPurchaseItem } from '@/features/stock-purchase/types/stock-purchase';
 import { Pagination } from '@nextui-org/pagination';
 import { Chip } from '@nextui-org/react';
 import {
   Table,
-  TableHeader,
   TableBody,
-  TableColumn,
-  TableRow,
   TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
 } from '@nextui-org/table';
 import { Key, useCallback, useMemo, useState } from 'react';
+
+import { StockPurchaseItem } from '@/features/stock-purchase/types/stock-purchase';
 
 const columns = [
   {
@@ -56,7 +57,7 @@ export default function StockPurchaseList({ items }: Props) {
         return (
           <Chip
             className='capitalize w-auto'
-            color="success"
+            color='success'
             size='sm'
             variant='flat'
           >
@@ -67,7 +68,7 @@ export default function StockPurchaseList({ items }: Props) {
         return (
           <Chip
             className='capitalize w-auto'
-            color="warning"
+            color='warning'
             size='sm'
             variant='flat'
           >

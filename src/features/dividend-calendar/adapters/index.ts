@@ -1,11 +1,12 @@
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+
 import {
   DayEvent,
   FindManyCalendarEventsResponse,
 } from '../services/interfaces/find-many-calendar-events-response';
 import { CalendarEvent, DividendType } from '../types';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);

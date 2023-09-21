@@ -1,9 +1,11 @@
-import { createServerSupabaseClient } from '@/supabase';
 import { redirect } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
-import { APP_ROUTE_PATHS } from '../app-routes';
+
 import Navbar from '@/app/components/navbar';
 import { GraphqlService } from '@/features/core/http-client';
+import { createServerSupabaseClient } from '@/supabase';
+
+import { APP_ROUTE_PATHS } from '../app-routes';
 
 async function HomeLayout({ children }: PropsWithChildren) {
   const supabase = createServerSupabaseClient();

@@ -1,18 +1,18 @@
 'use client';
 
-import { Key, useState, useMemo, useEffect } from 'react';
-
-import { Tabs, Tab } from '@nextui-org/tabs';
+import { Tab, Tabs } from '@nextui-org/tabs';
 import dayjs from 'dayjs';
-import { DEFAULT_DATE_FORMAT, MONTH_LIST } from '@/shared/constants';
-import DividendIncomeListTable from './dividend-income-list-table';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { Key, useMemo, useState } from 'react';
+
 import { DividendIncomeItem } from '@/features/dividend-income/types';
+import { DEFAULT_DATE_FORMAT, MONTH_LIST } from '@/shared/constants';
+
+import DividendIncomeListTable from './dividend-income-list-table';
 
 dayjs.extend(customParseFormat);
 
 const keyCurrentMonth = (dayjs().month() + 1).toString();
-const currentYear = dayjs().year();
 
 const columns = [
   {
