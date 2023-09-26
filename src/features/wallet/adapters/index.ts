@@ -25,7 +25,7 @@ export const walletDividendListAdapter = (
 
 export const walletHoldingListAdapter = (data: FindWalletHoldingInformation): WalletHoldingInformation => {
   return {
-    tickets: data.holdingsView?.holdings?.map(item => ({
+    tickets: data?.holdingsView?.holdings?.map(item => ({
       amount: item.marketValue,
       quantity: item.shares,
       ticket: item.symbol

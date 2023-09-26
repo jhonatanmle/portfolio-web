@@ -1,11 +1,11 @@
-"use server";
-
 import { NextRequest, NextResponse } from 'next/server';
 
 import { graphqlClient } from '@/features/core/http-client';
 import { queryFindWalletHoldingInformation } from '@/features/wallet/services/graphql';
 import { regenerateWalletToken } from '../auth-token';
 import { FindWalletHoldingInformation } from '@/features/wallet/services/interfaces/find-wallet-holding-information';
+
+export const dynamic = 'force-dynamic';
 
 const handleHttp = async ({
   token
