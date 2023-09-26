@@ -42,7 +42,7 @@ export default async function Page() {
   return (
     <div className='grid grid-cols-1 gap-y-[40px] lg:grid-cols-3 lg:gap-x-[80px] pb-10'>
       <section className='col-span-2 flex flex-col gap-y-10'>
-        <div className='flex flex-wrap lg:flex-row gap-y-4 gap-x-4 lg:justify-start lg:items-start'>
+        <div className='grid grid-cols-2 lg:flex lg:flex-row gap-y-4 gap-x-4 lg:justify-start lg:items-start'>
           {totals.map((item) => (
             <CardTotal
               key={item.id}
