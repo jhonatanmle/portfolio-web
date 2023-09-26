@@ -6,6 +6,8 @@ import { queryFindWalletDividendInformation } from '@/features/wallet/services/g
 import { FindWalletInformation } from '@/features/wallet/services/interfaces/find-wallet-information';
 import { regenerateWalletToken } from '../auth-token';
 
+export const dynamic = 'force-dynamic';
+
 const handleHttp = async ({
   token
 }: {

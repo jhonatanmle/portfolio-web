@@ -4,6 +4,8 @@ import { graphqlClient } from '@/features/core/http-client';
 import { queryFindManyCalendarEvents } from '@/features/dividend-calendar/services/graphql';
 import { FindManyCalendarEventsResponse } from '@/features/dividend-calendar/services/interfaces/find-many-calendar-events-response';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   const token = request.cookies.get('token');
 
