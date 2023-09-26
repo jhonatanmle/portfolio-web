@@ -35,7 +35,7 @@ export default function DoughnutTicket({ items }: Props) {
         data: items
           ?.sort(sortItems)
           .map((item) => item.amount),
-        spacing: 2,
+        spacing: 1,
         borderWidth: 0,
       },
     ],
@@ -57,9 +57,9 @@ export default function DoughnutTicket({ items }: Props) {
           const halfwidth = width / 2;
           const halfheight = height / 2;
 
-          const xLine = x >= halfwidth ? x + 25 : x - 25;
-          const yLine = y >= halfheight ? y + 25 : y - 25;
-          const extraLine = x >= halfwidth ? 25 : -25;
+          const xLine = x >= halfwidth ? x + 20 : x - 20;
+          const yLine = y >= halfheight ? y + 20 : y - 20;
+          const extraLine = x >= halfwidth ? 20 : -20;
 
           ctx.beginPath();
           ctx.moveTo(x, y);
@@ -69,7 +69,7 @@ export default function DoughnutTicket({ items }: Props) {
           ctx.stroke();
 
           const textXPosition = x >= halfwidth ? 'left' : 'right'
-          const plusFivePx = x >= halfwidth ? 5 : -5;
+          const plusFivePx = x >= halfwidth ? 3 : -3;
           ctx.font = '12px Arial';
           ctx.textAlign = textXPosition;
           ctx.textBaseline = 'middle';
@@ -85,16 +85,17 @@ export default function DoughnutTicket({ items }: Props) {
       plugins={[Tooltip, Legend, Colors, ChartDataLabels, doughtnutLabelsLine] as any}
       data={data}
       options={{
+        cutout: 70,
         layout: {
-          padding: 20
+          padding: 50
         },
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         plugins: {
           legend: {
             display: false,
           },
           tooltip: {
-            enabled: true,
+            enabled: false,
           },
           datalabels: {
             formatter(value, context) {

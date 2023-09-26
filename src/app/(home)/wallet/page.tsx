@@ -42,7 +42,7 @@ export default async function Page() {
   return (
     <div className='grid grid-cols-1 gap-y-[40px] lg:grid-cols-3 lg:gap-x-[80px] pb-10'>
       <section className='col-span-2 flex flex-col gap-y-10'>
-        <div className='flex flex-col items-center lg:flex-wrap lg:flex-row gap-y-4 lg:gap-x-4 lg:justify-start lg:items-start'>
+        <div className='flex flex-wrap lg:flex-row gap-y-4 gap-x-4 lg:justify-start lg:items-start'>
           {totals.map((item) => (
             <CardTotal
               key={item.id}
@@ -72,7 +72,7 @@ export default async function Page() {
         </div>
         <div>
           <h3 className='text-2xl mb-4'>Acciones</h3>
-          <div className='bg-zinc-900 p-4 rounded-xl'>
+          <div className='bg-zinc-900 py-4 rounded-xl'>
             <div className='h-[350px] flex justify-center'>
               <DoughnutTicket items={dataHolding.tickets} />
             </div>
