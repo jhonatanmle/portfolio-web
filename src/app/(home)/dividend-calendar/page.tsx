@@ -2,17 +2,10 @@ import { Chip } from '@nextui-org/chip';
 import React from 'react';
 
 import Calendar from '@/app/components/calendar';
-import { GraphqlService } from '@/features/core/http-client';
 import { findManyGroupCalendarEvents } from '@/features/dividend-calendar/services';
 
 async function DividendCalendar() {
-  let data = await findManyGroupCalendarEvents();
-
-  if (data?.length === 0) {
-    await GraphqlService.regenerateToken();
-
-    data = await findManyGroupCalendarEvents();
-  }
+  const data = await findManyGroupCalendarEvents();
 
   return (
     <div className='my-10'>

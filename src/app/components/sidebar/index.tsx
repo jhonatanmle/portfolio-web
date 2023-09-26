@@ -4,6 +4,7 @@ import { Button } from '@nextui-org/button';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import {
   IconCalendar,
+  IconChartPie2,
   IconCoins,
   IconLogout2,
   IconShoppingCart,
@@ -62,6 +63,13 @@ export default function Sidebar({ className = '' }: Props) {
       title: 'Dividendos',
       path: APP_ROUTE_PATHS.dividendIncome,
       icon: <IconCoins stroke={1} />,
+      onClick: (path) => onClickMenu(path!),
+    },
+    {
+      id: nanoid(),
+      title: 'Cartera',
+      path: APP_ROUTE_PATHS.wallet,
+      icon: <IconChartPie2 stroke={1} />,
       onClick: (path) => onClickMenu(path!),
     },
     {

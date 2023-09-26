@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 
-import { GraphqlService } from '@/features/core/http-client';
 import { createServerSupabaseClient } from '@/supabase';
 
 import { APP_ROUTE_PATHS } from '../app-routes';
@@ -18,22 +17,12 @@ async function HomeLayout({ children }: PropsWithChildren) {
     redirect(APP_ROUTE_PATHS.signIn);
   }
 
-  try {
-    const { data: tokenData } = await supabase
-      .from('externalToken')
-      .select('token');
-
-    GraphqlService.setToken(tokenData?.at(-1)?.token);
-  } catch (error) {
-    console.log(error);
-  }
-
   return (
     <div className='flex flex-col lg:flex-row h-screen'>
       <Sidebar />
-      <div className='flex-1 lg:container'>
+      <div className='flex-1 lg:container overflow-auto'>
         <HeaderHome />
-        <main className='p-8 h-full overflow-y-auto'>{children}</main>
+        <main className='p-8 h-full'>{children}</main>
       </div>
     </div>
   );

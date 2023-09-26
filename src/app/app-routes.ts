@@ -4,5 +4,6 @@ export const APP_ROUTE_PATHS = {
   dividendCalendar: '/dividend-calendar',
   stockPurchaseHistory: '/stock-purchase-history',
   stockPurchaseHistoryCreate: '/stock-purchase-history/create',
+  wallet: '/wallet',
   signIn: '/sign-in',
 };

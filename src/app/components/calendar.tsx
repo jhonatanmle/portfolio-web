@@ -27,7 +27,7 @@ export default function Calendar({ events = [] }: Props) {
   const items = useMemo<ItemEventCalendar[]>(() => {
     return events.map((item) => {
       return {
-        title: `${item.symbol} - ${item.payment.toFixed(2)} USD`,
+        title: `${item.symbol} - $${item.payment.toFixed(2)}`,
         start: item.date,
         backgroundColor:
           item.dividendType === DividendType.Payment ? 'success' : 'warning',

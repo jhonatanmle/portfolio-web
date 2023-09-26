@@ -17,17 +17,14 @@ export async function GET(request: NextRequest) {
     const supabase = createRouteHandlerClient({ cookies });
     await supabase.auth.exchangeCodeForSession(code);
 
-    const userData = await signInPortfolio(
-      process.env.NEXT_PUBLIC_USER_ID!,
-      process.env.NEXT_PUBLIC_USER_RECOVERY_CODE!
+    const { accessToken, refreshToken } = await signInPortfolio(
+      process.env.USER_ID!,
+      process.env.USER_RECOVERY_CODE!
     );
 
-    await supabase
-      .from('externalToken')
-      .insert([
-        { token: userData.accessToken, refreshToken: userData.refreshToken },
-      ])
-      .select();
+    const cookieStore = cookies();
+    cookieStore.set('token', accessToken!);
+    cookieStore.set('refreshToken', refreshToken!);
   }
 
   return NextResponse.redirect(requestUrl.origin);
