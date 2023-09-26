@@ -1,5 +1,3 @@
-"use server";
-
 import { NextRequest, NextResponse } from 'next/server';
 import { graphqlClient } from '@/features/core/http-client';
 import { queryFindWalletDividendInformation } from '@/features/wallet/services/graphql';
